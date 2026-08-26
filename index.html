@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="A simple static exercise recommendation website made with HTML and CSS.">
+  <meta name="description" content="A simple exercise recommendation website made with HTML, CSS and JavaScript.">
   <title>FitGuide | Exercise Recommendation Tool</title>
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -13,7 +12,7 @@
     <a class="logo" href="#top"><span>F</span> FitGuide</a>
     <nav aria-label="Main navigation">
       <a href="#choices">Your choices</a>
-      <a href="#plan">Example plan</a>
+      <a href="#plan">Your plan</a>
       <a href="#exercises">Exercises</a>
       <a href="#safety">Safety</a>
     </nav>
@@ -24,8 +23,8 @@
       <div>
         <p class="label">Exercise recommendation tool</p>
         <h1>A simple plan to help you get moving.</h1>
-        <p class="lead">FitGuide shows a basic weekly workout for a beginner who wants to improve their general fitness at home.</p>
-        <a class="button" href="#plan">View the example plan</a>
+        <p class="lead">Choose your goal, experience, equipment and available time. FitGuide will create a simple weekly workout for you.</p>
+        <a class="button" href="#choices">Create my plan</a>
       </div>
       <aside class="quick-card">
         <p class="small-title">This week's example</p>
@@ -47,30 +46,30 @@
       <div class="section-heading">
         <p class="label">Your choices</p>
         <h2>What kind of plan do you want?</h2>
-        <p>This form is a visual example only. Because this version uses HTML and CSS, changing an option will not create a different workout.</p>
+        <p>Select an option from each box. Your plan will be created instantly in your browser.</p>
       </div>
 
-      <form class="choice-form">
+      <form class="choice-form" id="plan-form">
         <div class="form-row"><label for="goal">Main goal</label><select id="goal" name="goal"><option>General fitness</option><option>Build strength</option><option>Build muscle</option><option>Improve endurance</option></select></div>
         <div class="form-row"><label for="level">Experience level</label><select id="level" name="level"><option>Beginner</option><option>Intermediate</option><option>Advanced</option></select></div>
         <div class="form-row"><label for="equipment">Equipment</label><select id="equipment" name="equipment"><option>Bodyweight only</option><option>Dumbbells</option><option>Full gym</option></select></div>
         <div class="form-row"><label for="days">Training days</label><select id="days" name="days"><option>3 days per week</option><option>2 days per week</option><option>4 days per week</option></select></div>
         <div class="form-row"><label for="time">Session length</label><select id="time" name="time"><option>45 minutes</option><option>30 minutes</option><option>60 minutes</option></select></div>
-        <a class="button full-button" href="#plan">Show example workout</a>
-        <p class="form-note">Demo only — no personal information is collected or saved.</p>
+        <button class="button full-button" type="submit">Generate my workout</button>
+        <p class="form-note" id="generator-status" aria-live="polite">No personal information is collected or saved.</p>
       </form>
     </section>
 
     <section class="section" id="plan">
       <div class="section-heading">
-        <p class="label">Example recommendation</p>
-        <h2>Your 3-day bodyweight workout</h2>
-        <p>Complete the sessions on non-consecutive days, such as Monday, Wednesday and Friday. Rest for 60 seconds between sets.</p>
+        <p class="label">Your recommendation</p>
+        <h2 id="plan-title">Your 3-day bodyweight workout</h2>
+        <p id="plan-description">Complete the sessions on non-consecutive days, such as Monday, Wednesday and Friday. Rest for 60 seconds between sets.</p>
       </div>
-      <div class="summary-grid">
+      <div class="summary-grid" id="summary-grid">
         <div><b>3</b><span>days each week</span></div><div><b>45</b><span>minutes per session</span></div><div><b>15</b><span>exercises in total</span></div><div><b>Easy</b><span>beginner level</span></div>
       </div>
-      <div class="workout-grid">
+      <div class="workout-grid" id="workout-grid">
         <article class="workout-card"><header><span>Day 1</span><h3>Full Body A</h3></header><ol>
           <li><div><strong>Bodyweight squat</strong><small>Legs</small></div><b>2 × 10</b></li><li><div><strong>Incline push-up</strong><small>Chest</small></div><b>2 × 8</b></li><li><div><strong>Glute bridge</strong><small>Glutes</small></div><b>2 × 12</b></li><li><div><strong>Prone back extension</strong><small>Back</small></div><b>2 × 10</b></li><li><div><strong>Plank</strong><small>Core</small></div><b>2 × 20 sec</b></li>
         </ol></article>
@@ -84,15 +83,15 @@
     </section>
 
     <section class="section light" id="overview">
-      <div class="section-heading"><p class="label">Plan overview</p><h2>A balanced beginner routine</h2></div>
+      <div class="section-heading"><p class="label">Plan overview</p><h2 id="overview-title">A balanced beginner routine</h2></div>
       <div class="chart-grid">
-        <article class="chart-card"><h3>Muscle focus</h3><p>Number of exercises in the weekly plan</p><div class="bars">
+        <article class="chart-card"><h3>Muscle focus</h3><p>Number of exercises in the weekly plan</p><div class="bars" id="muscle-bars">
           <div><span>Legs</span><i style="--size:75%"></i><b>3</b></div><div><span>Chest</span><i style="--size:75%"></i><b>3</b></div><div><span>Back</span><i style="--size:50%"></i><b>2</b></div><div><span>Core</span><i style="--size:75%"></i><b>3</b></div><div><span>Fitness</span><i style="--size:50%"></i><b>2</b></div>
         </div></article>
-        <article class="chart-card"><h3>Routine balance</h3><p>Share of the 15 exercises</p><div class="stacked" aria-label="Upper body 33%, lower body 27%, core 20%, fitness 20%"><span class="upper" style="--size:33%">33%</span><span class="lower" style="--size:27%">27%</span><span class="core" style="--size:20%">20%</span><span class="cardio" style="--size:20%">20%</span></div><ul class="legend"><li><i class="upper"></i>Upper body</li><li><i class="lower"></i>Lower body</li><li><i class="core"></i>Core</li><li><i class="cardio"></i>Fitness</li></ul></article>
-        <article class="chart-card"><h3>Session workload</h3><p>Working sets on each training day</p><div class="columns"><div><b>10</b><i style="--height:100%"></i><span>Day 1</span></div><div><b>10</b><i style="--height:100%"></i><span>Day 2</span></div><div><b>10</b><i style="--height:100%"></i><span>Day 3</span></div></div></article>
+        <article class="chart-card"><h3>Routine balance</h3><p id="balance-caption">Share of the 15 exercises</p><div class="stacked" id="balance-chart" aria-label="Upper body 33%, lower body 27%, core 20%, fitness 20%"><span class="upper" style="--size:33%">33%</span><span class="lower" style="--size:27%">27%</span><span class="core" style="--size:20%">20%</span><span class="cardio" style="--size:20%">20%</span></div><ul class="legend"><li><i class="upper"></i>Upper body</li><li><i class="lower"></i>Lower body</li><li><i class="core"></i>Core</li><li><i class="cardio"></i>Fitness</li></ul></article>
+        <article class="chart-card"><h3>Session workload</h3><p>Working sets on each training day</p><div class="columns" id="workload-columns"><div><b>10</b><i style="--height:100%"></i><span>Day 1</span></div><div><b>10</b><i style="--height:100%"></i><span>Day 2</span></div><div><b>10</b><i style="--height:100%"></i><span>Day 3</span></div></div></article>
       </div>
-      <div class="feedback"><b>Good starting point</b><p>This plan trains the whole body without using complicated exercises. When it starts to feel easy, add two repetitions to each set.</p></div>
+      <div class="feedback"><b id="feedback-title">Good starting point</b><p id="feedback-text">This plan trains the whole body without using complicated exercises. When it starts to feel easy, add two repetitions to each set.</p></div>
     </section>
 
     <section class="section" id="exercises">
@@ -111,6 +110,7 @@
       <div class="warning">!</div><div><p class="label">Safety first</p><h2>Listen to your body.</h2><p>Warm up before exercising and use controlled technique. Stop if you feel sharp pain, dizziness or unusual shortness of breath. Speak with a qualified health professional before starting if you have an injury or medical condition.</p></div>
     </section>
   </main>
-  <footer><a class="logo" href="#top"><span>F</span> FitGuide</a><p>School project example · Built using HTML and CSS only</p></footer>
+  <footer><a class="logo" href="#top"><span>F</span> FitGuide</a><p>School project example · Built using HTML, CSS and JavaScript</p></footer>
+  <script src="script.js"></script>
 </body>
 </html>
